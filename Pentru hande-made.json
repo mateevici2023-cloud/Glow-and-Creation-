@@ -1,0 +1,119 @@
+{
+  "name": "Pentru hande-made",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Creaza o urare de la multi ani pentru urmatorul client.\n\nPentru {{ $json['Cum te cheama?'] }}\nCare e {{ $json['Genul tau?'] }}\nCu varsta {{ $json['Cati ani ai?'] }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        304,
+        80
+      ],
+      "id": "ee0a396e-3a9c-4521-9886-9540c219dd37",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        176,
+        288
+      ],
+      "id": "d8e63dbe-e36a-4a35-a220-0a3b11df0754",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JPJiSxyNJksag1Wu",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "Contact",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nume/Prenume"
+            },
+            {
+              "fieldLabel": "Numar de telefon",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "NR/piese",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Model",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -80,
+        112
+      ],
+      "id": "2d873709-e28d-4dfe-982f-28e9ac3d36e5",
+      "name": "On form submission",
+      "webhookId": "2134a318-bc1a-4c5d-b396-950415bdea23"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "8c6d9bc1-816d-407c-83e9-1bc937625ca0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b014772acd79975a2eb2a3a5a03c1dbd71e316f9dc41931d1a34550036a67755"
+  },
+  "id": "GD8Kl0sq3oeXyLhq",
+  "tags": []
+}

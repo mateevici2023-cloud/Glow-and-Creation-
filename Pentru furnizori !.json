@@ -1,0 +1,129 @@
+{
+  "name": "Pentru furnizori !",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Sporește vânzările afacerii tale!",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nume/Prenume"
+            },
+            {
+              "fieldLabel": " Site web"
+            },
+            {
+              "fieldLabel": "Numar telefon "
+            },
+            {
+              "fieldLabel": "Tipul",
+              "fieldType": "checkbox",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Top3"
+                  },
+                  {
+                    "option": "Top 6"
+                  },
+                  {
+                    "option": "Normal mode"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Descrie Produsul"
+            },
+            {
+              "fieldLabel": "Plaseaza o poza cu produsele tale!",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "518230ab-c012-49a2-b8ca-28b01fd9418a",
+      "name": "On form submission",
+      "webhookId": "034941ea-de7c-4588-a930-7fac156969a0"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        272,
+        -64
+      ],
+      "id": "8a4084fb-8ef4-4686-93bd-db9366799c63",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        144,
+        144
+      ],
+      "id": "c0a2ef3b-4d60-464d-86c2-392a5caa4367",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JPJiSxyNJksag1Wu",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "6467e774-0729-4eef-9aa6-64a50b86847f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b014772acd79975a2eb2a3a5a03c1dbd71e316f9dc41931d1a34550036a67755"
+  },
+  "id": "2R3M6BaEwj36xr1N",
+  "tags": []
+}
